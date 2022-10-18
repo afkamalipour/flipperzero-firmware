@@ -24,7 +24,7 @@ typedef uint64_t EM4100DecodedData;
 #define EM4100_DECODED_DATA_SIZE (5)
 #define EM4100_ENCODED_DATA_SIZE (sizeof(EM4100DecodedData))
 
-#define EM4100_CLOCK_PER_BIT (64)
+#define EM4100_CLOCK_PER_BIT (32)
 
 #define EM_READ_SHORT_TIME (256)
 #define EM_READ_LONG_TIME (512)
@@ -260,7 +260,7 @@ bool protocol_em4100_write_data(ProtocolEM4100* protocol, void* data) {
 
     if(request->write_type == LFRFIDWriteTypeT5577) {
         request->t5577.block[0] =
-            (LFRFID_T5577_MODULATION_MANCHESTER | LFRFID_T5577_BITRATE_RF_64 |
+            (LFRFID_T5577_MODULATION_MANCHESTER | LFRFID_T5577_BITRATE_RF_32 |
              (2 << LFRFID_T5577_MAXBLOCK_SHIFT));
         request->t5577.block[1] = protocol->encoded_data;
         request->t5577.block[2] = protocol->encoded_data >> 32;
